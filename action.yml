@@ -1,0 +1,21 @@
+name: 'ROS 2 Lint Action'
+description: 'Run ROS 2 Linters using Github Actions.'
+author: 'Thomas Moulard'
+branding:
+  icon: 'thermometer'
+  color: 'green'
+inputs:
+  linter:
+    default: 'flake8'
+    description: 'ROS 2 Linter'
+    required: false
+  distribution:
+    default: 'eloquent'
+    description: 'ROS 2 Distribution to install the lint tool from'
+    required: false
+  package-name:
+    description: 'Name of the package under test, as expected by colcon'
+    required: true
+runs:
+  using: 'node12'
+  main: 'lib/action-ros2-lint.js'
