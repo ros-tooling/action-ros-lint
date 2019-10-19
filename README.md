@@ -1,6 +1,6 @@
 # action-ros2-lint
 
-[![GitHub Action Status](https://github.com/thomas-moulard/action-ros2-lint/workflows/Test%20action-ros2-lint/badge.svg)](https://github.com/thomas-moulard/action-ros2-lint)
+[![GitHub Action Status](https://github.com/ros-tooling/action-ros2-lint/workflows/Test%20action-ros2-lint/badge.svg)](https://github.com/ros-tooling/action-ros2-lint)
 
 This action compiles [ROS 2](https://index.ros.org/doc/ros2/) from source, and run colon-test on the package under test.
 
@@ -13,8 +13,8 @@ Basic:
 ```yaml
 steps:
 - uses: actions/checkout@v1
-- uses: thomas-moulard/setup-ros2@0.0.3
-- uses: thomas-moulard/action-ros2-lint@master
+- uses: ros-tooling/setup-ros2@master
+- uses: ros-tooling/action-ros2-lint@master
   with:
     package-name: your_package_name
 ```
@@ -31,8 +31,8 @@ jobs:
           linter: [copyright, flake8, mypy, pep257, pep8, xmllint]
     steps:
     - uses: actions/checkout@v1
-    - uses: thomas-moulard/setup-ros2@0.0.3
-    - uses: thomas-moulard/action-ros2-lint@master
+    - uses: ros-tooling/setup-ros2@master
+    - uses: ros-tooling/action-ros2-lint@master
       with:
         linter: ${{ matrix.linter }}
         package-name: your_package_name
