@@ -27,10 +27,14 @@ async function run() {
     const options = {
       cwd: ros2WorkspaceDir
     };
+
+    // The following command source setup.sh so that the linter can be used,
+    // it then uses colcon list to determine the package directory, and finally
+    // invoke the linter.
     await exec.exec(
         "bash",
         ["-c",
-         `source /opt/ros/${ros2Distribution}/setup.sh && ament_${linterTool}`],
+        `source /opt/ros/${ros2Distribution}/setup.sh && ament_${linterTool} "$(colcon list --packages-select '${packageName}' -p)"`],
         options);
   } catch (error) {
     core.setFailed(error.message);
