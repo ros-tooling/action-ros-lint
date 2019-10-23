@@ -2,6 +2,7 @@ import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import * as github from "@actions/github";
 import * as io from "@actions/io";
+import * as path from 'path';
 
 async function runAptGetInstall(packages: string[]): Promise<number> {
    return exec.exec(
@@ -14,6 +15,10 @@ async function runAptGetInstall(packages: string[]): Promise<number> {
 
 async function run() {
   try {
+    const matchersPath = path.join(__dirname, '..');
+    console.log(`##[add-matcher]${path.join(matchersPath, 'ament_copyright.json')}`);
+    console.log(`##[add-matcher]${path.join(matchersPath, 'ament_flake8.json')}`);
+
     const linterTool = core.getInput("linter");
     const packageName = core.getInput("package-name");
     const ros2Distribution = core.getInput("distribution");

@@ -1,0 +1,18 @@
+{
+    "problemMatcher": [
+        {
+            "owner": "ament_flake8",
+            "fileLocation": ["absolute"],
+            "pattern": [
+                {
+                    "regexp": "^(.+):(\\d+):(\\d+):\\s+(.\\d+):\\s+(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            ]
+        }
+    ]
+}
