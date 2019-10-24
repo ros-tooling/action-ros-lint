@@ -1,6 +1,6 @@
 # action-ros2-lint
 
-[![GitHub Action Status](https://github.com/ros-tooling/action-ros2-lint/workflows/Test%20action-ros2-lint/badge.svg)](https://github.com/ros-tooling/action-ros2-lint)
+[![GitHub Action Status](https://github.com/ros-tooling/action-ros2-lint/workflows/Test%20action-ros2-lint/badge.svg)](https://github.com/ros-tooling/action-ros2-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/ros-tooling/action-ros2-lint.svg)](https://greenkeeper.io/)
 
 This action compiles [ROS 2](https://index.ros.org/doc/ros2/) from source, and run colon-test on the package under test.
 
