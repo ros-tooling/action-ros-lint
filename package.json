@@ -1,42 +1,50 @@
 {
-  "name": "typescript-action",
+  "name": "action-ros2-lint",
   "version": "0.0.0",
-  "private": true,
-  "description": "TypeScript template action",
+  "description": "GitHub Action to run ROS 2 linters on a ROS 2 package",
   "main": "lib/main.js",
   "scripts": {
-    "build": "ncc build src/action-ros2-lint.ts -o dist",
-    "test": "jest"
+    "build": "ncc build src/*.ts -o dist",
+    "lint": "eslint src/*.ts",
+    "prettier": "prettier --write 'src/*.ts'",
+    "test": "eslint src/*.ts && jest --coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/ros-tooling/action-ros2-lint.git"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "ros2",
+    "lint"
   ],
-  "author": "YourNameOrOrganization",
-  "license": "MIT",
+  "author": "ROS 2 Tooling Working Group",
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/ros-tooling/action-ros2-lint/issues"
+  },
   "dependencies": {
-    "@actions/core": "^1.0.0",
-    "@actions/exec": "^1.0.1",
-    "@actions/github": "^1.1.0",
-    "@actions/io": "^1.0.1",
-    "acorn": "^7.1.0"
+    "@actions/core": "^1.2.0",
+    "@actions/exec": "^1.0.1"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
     "@zeit/ncc": "^0.20.5",
-    "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.4",
-    "@typescript-eslint/eslint-plugin": "^2.4.0",
-    "@typescript-eslint/parser": "^2.4.0",
-    "eslint": "^6.5.1",
-    "jest": "^24.8.0",
-    "jest-circus": "^24.7.1",
+    "acorn": "^7.1.0",
+    "eslint": "^6.7.1",
+    "jest": "^24.9.0",
+    "jest-circus": "^24.9.0",
     "prettier": "1.19.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.5.1"
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.2"
   }
 }
