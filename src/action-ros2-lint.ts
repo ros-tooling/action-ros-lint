@@ -28,7 +28,8 @@ async function run() {
 		);
 
 		const linterTool = core.getInput("linter");
-		const packageName = core.getInput("package-name");
+		const packageName = core.getInput("package-name", { required: true });
+		const packageNameList = packageName.split(RegExp("\\s"));
 		const ros2Distribution = core.getInput("distribution");
 		const ros2WorkspaceDir = process.env.GITHUB_WORKSPACE;
 
@@ -47,7 +48,10 @@ async function run() {
 			"bash",
 			[
 				"-c",
-				`source /opt/ros/${ros2Distribution}/setup.sh && ament_${linterTool} "$(colcon list --packages-select '${packageName}' -p)"`
+				`source /opt/ros/${ros2Distribution}/setup.sh && ` +
+					`ament_${linterTool} "$(colcon list --packages-select '${packageNameList.join(
+						" "
+					)}' -p)"`
 			],
 			options
 		);
