@@ -19,6 +19,9 @@ inputs:
         Passing multiple package names is allowed.
         Package names can be separated by any whitespace character.
     required: true
+  workspace-directory:
+    description: Linters will look for packages in this colcon workspace
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
