@@ -973,9 +973,9 @@ function run() {
             console.log(`##[add-matcher]${path.join(matchersPath, "ament_flake8.json")}`);
             const linterTool = core.getInput("linter");
             const packageName = core.getInput("package-name", { required: true });
-            const packageNameList = packageName.split(RegExp('\\s'));
+            const packageNameList = packageName.split(RegExp("\\s"));
             const ros2Distribution = core.getInput("distribution");
-            const ros2WorkspaceDir = process.env.GITHUB_WORKSPACE;
+            const ros2WorkspaceDir = core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
             yield exec.exec("rosdep", ["update"]);
             yield runAptGetInstall([`ros-${ros2Distribution}-ament-${linterTool}`]);
             const options = {
@@ -987,7 +987,7 @@ function run() {
             yield exec.exec("bash", [
                 "-c",
                 `source /opt/ros/${ros2Distribution}/setup.sh && ` +
-                    `ament_${linterTool} "$(colcon list --packages-select '${packageNameList.join(' ')}' -p)"`
+                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p)`
             ], options);
         }
         catch (error) {
