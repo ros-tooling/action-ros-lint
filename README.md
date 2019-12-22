@@ -1,8 +1,8 @@
-# action-ros2-lint
+# action-ros-lint
 
-[![GitHub Action Status](https://github.com/ros-tooling/action-ros2-lint/workflows/Test%20action-ros2-lint/badge.svg)](https://github.com/ros-tooling/action-ros2-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/ros-tooling/action-ros2-lint.svg)](https://greenkeeper.io/)
+[![GitHub Action Status](https://github.com/ros-tooling/action-ros-lint/workflows/Test%20action-ros-lint/badge.svg)](https://github.com/ros-tooling/action-ros-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/ros-tooling/action-ros-lint.svg)](https://greenkeeper.io/)
 
-This action runs [ROS 2](https://index.ros.org/doc/ros2/) linters on a ROS 2 package.
+This action runs [ROS 2](https://index.ros.org/doc/ros/) linters on a ROS 2 package.
 
 ## Usage
 
@@ -13,8 +13,8 @@ Basic:
 ```yaml
 steps:
 - uses: actions/checkout@v1
-- uses: ros-tooling/setup-ros2@master
-- uses: ros-tooling/action-ros2-lint@master
+- uses: ros-tooling/setup-ros@master
+- uses: ros-tooling/action-ros-lint@master
   with:
     package-name: your_package_name
 ```
@@ -31,8 +31,8 @@ jobs:
           linter: [copyright, flake8, mypy, pep257, pep8, xmllint]
     steps:
     - uses: actions/checkout@v1
-    - uses: ros-tooling/setup-ros2@master
-    - uses: ros-tooling/action-ros2-lint@master
+    - uses: ros-tooling/setup-ros@master
+    - uses: ros-tooling/action-ros-lint@master
       with:
         linter: ${{ matrix.linter }}
         package-name: your_package_name

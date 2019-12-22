@@ -1,4 +1,4 @@
-name: "Test action-ros2-lint"
+name: "Test action-ros-lint"
 on:
   pull_request:
   push:
@@ -25,7 +25,7 @@ jobs:
     - run: |
         git clone --depth=1 --branch=0.8.1 \
             https://github.com/ament/ament_lint.git
-    - uses: ros-tooling/setup-ros2@0.0.3
+    - uses: ros-tooling/setup-ros@0.0.3
     - uses: ./ # Uses an action in the root directory
       with:
         package-name: ament_copyright ament_lint

@@ -1,5 +1,5 @@
 {
-  "name": "action-ros2-lint",
+  "name": "action-ros-lint",
   "version": "0.0.0",
   "description": "GitHub Action to run ROS 2 linters on a ROS 2 package",
   "main": "lib/main.js",
@@ -11,11 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ros-tooling/action-ros2-lint.git"
+    "url": "git+https://github.com/ros-tooling/action-ros-lint.git"
   },
   "keywords": [
     "actions",
-    "ros2",
+    "ros",
     "lint"
   ],
   "author": "ROS 2 Tooling Working Group",
@@ -27,7 +27,7 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/ros-tooling/action-ros2-lint/issues"
+    "url": "https://github.com/ros-tooling/action-ros-lint/issues"
   },
   "dependencies": {
     "@actions/core": "^1.2.0",

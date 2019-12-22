@@ -30,16 +30,16 @@ async function run() {
 		const linterTool = core.getInput("linter");
 		const packageName = core.getInput("package-name", { required: true });
 		const packageNameList = packageName.split(RegExp("\\s"));
-		const ros2Distribution = core.getInput("distribution");
-		const ros2WorkspaceDir =
+		const rosDistribution = core.getInput("distribution");
+		const rosWorkspaceDir =
 			core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
 
 		await exec.exec("rosdep", ["update"]);
 
-		await runAptGetInstall([`ros-${ros2Distribution}-ament-${linterTool}`]);
+		await runAptGetInstall([`ros-${rosDistribution}-ament-${linterTool}`]);
 
 		const options = {
-			cwd: ros2WorkspaceDir
+			cwd: rosWorkspaceDir
 		};
 
 		// The following command source setup.sh so that the linter can be used,
@@ -49,7 +49,7 @@ async function run() {
 			"bash",
 			[
 				"-c",
-				`source /opt/ros/${ros2Distribution}/setup.sh && ` +
+				`source /opt/ros/${rosDistribution}/setup.sh && ` +
 					`ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(
 						" "
 					)} -p)`
