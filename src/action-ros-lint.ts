@@ -27,7 +27,10 @@ async function run() {
 			`##[add-matcher]${path.join(matchersPath, "ament_flake8.json")}`
 		);
 
-		const linterTool = core.getInput("linter");
+		// linterTool is the executable name to invoke
+		// linterToolDashes is the name with only dashes used for debian package name composition
+		const linterTool = core.getInput("linter").replace("-","_");
+		const linterToolDashes = linterTool.replace("_", "-")
 		const packageName = core.getInput("package-name", { required: true });
 		const packageNameList = packageName.split(RegExp("\\s"));
 		const rosDistribution = core.getInput("distribution");
@@ -36,7 +39,7 @@ async function run() {
 
 		await exec.exec("rosdep", ["update"]);
 
-		await runAptGetInstall([`ros-${rosDistribution}-ament-${linterTool}`]);
+		await runAptGetInstall([`ros-${rosDistribution}-ament-${linterToolDashes}`]);
 
 		const options = {
 			cwd: rosWorkspaceDir
