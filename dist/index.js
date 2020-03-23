@@ -682,13 +682,16 @@ function run() {
             const matchersPath = path.join(__dirname, "..");
             console.log(`##[add-matcher]${path.join(matchersPath, "ament_copyright.json")}`);
             console.log(`##[add-matcher]${path.join(matchersPath, "ament_flake8.json")}`);
-            const linterTool = core.getInput("linter");
+            // linterTool is the executable name to invoke
+            // linterToolDashes is the name with only dashes used for debian package name composition
+            const linterTool = core.getInput("linter").replace("-","_");
+            const linterToolDashes = linterTool.replace("_", "-")
             const packageName = core.getInput("package-name", { required: true });
             const packageNameList = packageName.split(RegExp("\\s"));
             const rosDistribution = core.getInput("distribution");
             const rosWorkspaceDir = core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
             yield exec.exec("rosdep", ["update"]);
-            yield runAptGetInstall([`ros-${rosDistribution}-ament-${linterTool}`]);
+            yield runAptGetInstall([`ros-${rosDistribution}-ament-${linterToolDashes}`]);
             const options = {
                 cwd: rosWorkspaceDir
             };
