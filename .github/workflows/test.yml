@@ -20,12 +20,7 @@ on:
 
 jobs:
   test:
-    name: test_${{ matrix.linter }}
     runs-on: ubuntu-18.04
-    strategy:
-      fail-fast: false
-      matrix:
-        linter: [flake8, lint_cmake]
     steps:
     - uses: actions/checkout@v1
     - run: npm ci
@@ -34,8 +29,14 @@ jobs:
         git clone --depth=1 --branch=0.8.1 \
             https://github.com/ament/ament_lint.git
     - uses: ros-tooling/setup-ros@0.0.3
-    - uses: ./ # Uses an action in the root directory
+    - name: Try default linter
+      uses: ./
       with:
-        linter: ${{ matrix.linter }}
         package-name: ament_copyright ament_lint
+        workspace-directory: ament_lint
+    - name: Try a linter with underscores in the name
+      uses: ./
+      with:
+        linter: lint_cmake
+        package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
