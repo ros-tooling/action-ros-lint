@@ -28,7 +28,7 @@ jobs:
     - run: |
         git clone --depth=1 --branch=0.8.1 \
             https://github.com/ament/ament_lint.git
-    - uses: ros-tooling/setup-ros@0.0.3
+    - uses: ros-tooling/setup-ros@0.0.16
     - name: Try default linter
       uses: ./
       with:
