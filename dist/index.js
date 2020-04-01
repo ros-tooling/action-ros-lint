@@ -684,8 +684,8 @@ function run() {
             console.log(`##[add-matcher]${path.join(matchersPath, "ament_flake8.json")}`);
             // linterTool is the executable name to invoke
             // linterToolDashes is the name with only dashes used for debian package name composition
-            const linterTool = core.getInput("linter").replace("-","_");
-            const linterToolDashes = linterTool.replace("_", "-")
+            const linterTool = core.getInput("linter").replace("-", "_");
+            const linterToolDashes = linterTool.replace("_", "-");
             const packageName = core.getInput("package-name", { required: true });
             const packageNameList = packageName.split(RegExp("\\s"));
             const rosDistribution = core.getInput("distribution");
