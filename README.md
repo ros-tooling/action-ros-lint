@@ -1,6 +1,7 @@
 # action-ros-lint
 
-[![GitHub Action Status](https://github.com/ros-tooling/action-ros-lint/workflows/Test%20action-ros-lint/badge.svg)](https://github.com/ros-tooling/action-ros-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/ros-tooling/action-ros-lint.svg)](https://greenkeeper.io/)
+[![GitHub Action Status](https://github.com/ros-tooling/action-ros-lint/workflows/Test%20action-ros-lint/badge.svg)](https://github.com/ros-tooling/action-ros-lint)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ros-tooling/action-ros-lint)](https://dependabot.com)
 
 This action runs [ROS 2](https://index.ros.org/doc/ros/) linters on a ROS 2 package.
 
