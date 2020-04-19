@@ -13,8 +13,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:bionic
+      image: rostooling/setup-ros-docker:ubuntu-bionic-ros-eloquent-ros-base-latest
+      options: -u root  # setup-node requires root access
     steps:
+    - run: sudo chown -R rosbuild:rosbuild .
     - uses: actions/checkout@v2
       with:
         path: '.'
@@ -22,7 +24,6 @@ jobs:
       with:
         node-version: '12.x'
     - run: npm ci
-    - uses: ros-tooling/setup-ros@0.0.16
     - uses: actions/checkout@v2
       with:
         repository: ament/ament_lint
