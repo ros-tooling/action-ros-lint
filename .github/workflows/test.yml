@@ -11,15 +11,23 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:bionic
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+      with:
+        path: '.'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
     - run: npm ci
-    - run: npm run build
-    - run: |
-        git clone --depth=1 --branch=0.8.1 \
-            https://github.com/ament/ament_lint.git
     - uses: ros-tooling/setup-ros@0.0.16
+    - uses: actions/checkout@v2
+      with:
+        repository: ament/ament_lint
+        ref: 0.8.1
+        path: 'ament_lint'
     - name: Try default linter
       uses: ./
       with:
