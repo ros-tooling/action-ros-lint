@@ -51,8 +51,36 @@ jobs:
         package-name: your_package_name
 ```
 
+### Run generic and Python linters using a custom Docker image (experimental)
+
+Using a custom Docker image removes the need to run `setup-ros`, which makes the
+runs less flaky, and faster. This setup is new, and experimental.
+
+The docker image is provided by [ros-tooling/setup-ros-docker].
+
+```yaml
+jobs:
+  ament_lint:
+    runs-on: ubuntu-latest
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-bionic-ros-eloquent-ros-base-latest
+      options: -u root  # setup-node requires root access
+    strategy:
+      fail-fast: false
+      matrix:
+          linter: [copyright, flake8, mypy, pep257, pep8, xmllint]
+    steps:
+    - run: sudo chown -R rosbuild:rosbuild .
+    - uses: actions/checkout@v2
+    - uses: ros-tooling/action-ros-lint@master
+      with:
+        linter: ${{ matrix.linter }}
+        package-name: your_package_name
+```
+
 ## License
 
 The scripts and documentation in this project are released under the [Apache 2](LICENSE)
 
 [ros-tooling/action-ros-ci]: https://github.com/ros-tooling/action-ros-ci
+[ros-tooling/setup-ros-docker]: https://github.com/ros-tooling/setup-ros-docker
