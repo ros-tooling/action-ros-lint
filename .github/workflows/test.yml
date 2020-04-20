@@ -10,7 +10,37 @@ on:
     - cron:  '0 * * * *'
 
 jobs:
-  test:
+  test_setup_ros:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:bionic
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: '.'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm ci
+    - uses: ros-tooling/setup-ros@0.0.19
+    - uses: actions/checkout@v2
+      with:
+        repository: ament/ament_lint
+        ref: 0.8.1
+        path: 'ament_lint'
+    - name: Try default linter
+      uses: ./
+      with:
+        package-name: ament_copyright ament_lint
+        workspace-directory: ament_lint
+    - name: Try a linter with underscores in the name
+      uses: ./
+      with:
+        linter: lint_cmake
+        package-name: ament_cmake_cpplint
+        workspace-directory: ament_lint
+
+  test_setup_ros_docker:
     runs-on: ubuntu-latest
     container:
       image: rostooling/setup-ros-docker:ubuntu-bionic-ros-eloquent-ros-base-latest
