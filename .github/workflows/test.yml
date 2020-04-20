@@ -9,6 +9,9 @@ on:
     # Run the CI automatically every hour to look for flakyness.
     - cron:  '0 * * * *'
 
+env:
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
 jobs:
   test_setup_ros:
     runs-on: ubuntu-latest
@@ -21,7 +24,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: npm ci
+    - run: .github/workflows/build-and-test.sh
     - uses: ros-tooling/setup-ros@0.0.19
     - uses: actions/checkout@v2
       with:
@@ -39,6 +42,15 @@ jobs:
         linter: lint_cmake
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+      if: always()
+    - uses: ros-tooling/action-cloudwatch-metrics@0.0.4
+      if: always()
 
   test_setup_ros_docker:
     runs-on: ubuntu-latest
@@ -53,7 +65,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: npm ci
+    - run: .github/workflows/build-and-test.sh
     - uses: actions/checkout@v2
       with:
         repository: ament/ament_lint
@@ -70,3 +82,12 @@ jobs:
         linter: lint_cmake
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+      if: always()
+    - uses: ros-tooling/action-cloudwatch-metrics@0.0.4
+      if: always()
