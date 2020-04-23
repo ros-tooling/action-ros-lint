@@ -17,7 +17,7 @@ async function runAptGetInstall(packages: string[]): Promise<number> {
 	);
 }
 
-async function run() {
+export async function run() {
 	try {
 		const matchersPath = path.join(__dirname, "..");
 		console.log(
