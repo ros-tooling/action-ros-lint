@@ -30,7 +30,7 @@
     "url": "https://github.com/ros-tooling/action-ros-lint/issues"
   },
   "dependencies": {
-    "@actions/core": "^1.2.5",
+    "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.4"
   },
   "devDependencies": {
