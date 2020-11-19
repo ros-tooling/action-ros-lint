@@ -49,7 +49,6 @@ jobs:
       image: rostooling/setup-ros-docker:ubuntu-bionic-ros-eloquent-ros-base-latest
       options: -u root  # setup-node requires root access
     steps:
-    - run: sudo chown -R rosbuild:rosbuild .
     - uses: actions/checkout@v2
       with:
         path: '.'

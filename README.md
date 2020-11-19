@@ -70,7 +70,6 @@ jobs:
       matrix:
           linter: [copyright, flake8, mypy, pep257, pep8, xmllint]
     steps:
-    - run: sudo chown -R rosbuild:rosbuild .
     - uses: actions/checkout@v2
     - uses: ros-tooling/action-ros-lint@master
       with:
