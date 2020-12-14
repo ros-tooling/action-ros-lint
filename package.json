@@ -1,6 +1,6 @@
 {
   "name": "action-ros-lint",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "GitHub Action to run ROS 2 linters on a ROS 2 package",
   "main": "lib/main.js",
   "scripts": {
