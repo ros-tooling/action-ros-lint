@@ -16,7 +16,7 @@ jobs:
   test_setup_ros:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:bionic
+      image: ubuntu:focal
     steps:
     - uses: actions/checkout@v2
       with:
@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: '12.x'
     - run: .github/workflows/build-and-test.sh
-    - uses: ros-tooling/setup-ros@0.0.26
+    - uses: ros-tooling/setup-ros@v0.1
     - uses: actions/checkout@v2
       with:
         repository: ament/ament_lint
@@ -46,7 +46,7 @@ jobs:
   test_setup_ros_docker:
     runs-on: ubuntu-latest
     container:
-      image: rostooling/setup-ros-docker:ubuntu-bionic-ros-eloquent-ros-base-latest
+      image: rostooling/setup-ros-docker:ubuntu-focal-latest
       options: -u root  # setup-node requires root access
     steps:
     - uses: actions/checkout@v2
