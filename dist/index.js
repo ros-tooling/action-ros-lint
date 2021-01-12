@@ -1102,6 +1102,7 @@ function run() {
             const rosDistribution = core.getInput("distribution");
             const rosWorkspaceDir = core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
             yield exec.exec("rosdep", ["update"]);
+            yield exec.exec("sudo", ["apt-get", "update"]);
             yield runAptGetInstall([`ros-${rosDistribution}-ament-${linterToolDashes}`]);
             const options = {
                 cwd: rosWorkspaceDir

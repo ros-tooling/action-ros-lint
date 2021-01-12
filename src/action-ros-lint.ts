@@ -39,6 +39,7 @@ export async function run() {
 
 		await exec.exec("rosdep", ["update"]);
 
+		await exec.exec("sudo", ["apt-get", "update"]);
 		await runAptGetInstall([`ros-${rosDistribution}-ament-${linterToolDashes}`]);
 
 		const options = {
