@@ -16,7 +16,7 @@ jobs:
   test_setup_ros:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:bionic
+      image: ubuntu:focal
     steps:
     - uses: actions/checkout@v2
       with:
