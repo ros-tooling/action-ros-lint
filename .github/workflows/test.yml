@@ -42,6 +42,13 @@ jobs:
         linter: lint_cmake
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
+    - name: Try a linter with additional arguments
+      uses: ./
+      with:
+        linter: lint_cmake
+        arguments: '--filter=-linelength,+syntax'
+        package-name: ament_cmake_cpplint
+        workspace-directory: ament_lint
 
   test_setup_ros_docker:
     runs-on: ubuntu-latest
