@@ -29,7 +29,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository: ament/ament_lint
-        ref: 0.8.1
+        ref: 0.10.2
         path: 'ament_lint'
     - name: Try default linter
       uses: ./
@@ -59,7 +59,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository: ament/ament_lint
-        ref: 0.8.1
+        ref: 0.10.2
         path: 'ament_lint'
     - name: Try default linter
       uses: ./
