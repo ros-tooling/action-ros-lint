@@ -9,6 +9,9 @@ inputs:
     default: 'flake8'
     description: 'ROS 2 Linter'
     required: false
+  arguments:
+    description: 'Additional arguments for linter'
+    required: false
   distribution:
     default: 'rolling'
     description: 'ROS 2 Distribution to install the lint tool from'

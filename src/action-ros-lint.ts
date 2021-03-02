@@ -36,6 +36,7 @@ export async function run() {
 		const rosDistribution = core.getInput("distribution");
 		const rosWorkspaceDir =
 			core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
+		const additionalArguments = core.getInput("arguments");
 
 		await exec.exec("rosdep", ["update"]);
 
@@ -56,7 +57,7 @@ export async function run() {
 				`source /opt/ros/${rosDistribution}/setup.sh && ` +
 					`ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(
 						" "
-					)} -p)`
+					)} -p) ${additionalArguments}`
 			],
 			options
 		);

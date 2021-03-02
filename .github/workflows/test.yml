@@ -36,10 +36,18 @@ jobs:
       with:
         package-name: ament_copyright ament_lint
         workspace-directory: ament_lint
+    - name: Try a linter with additional arguments
+      uses: ./
+      with:
+        linter: lint_cmake
+        arguments: '--filter=-linelength,+syntax'
+        package-name: ament_cmake_cpplint
+        workspace-directory: ament_lint
     - name: Try a linter with underscores in the name
       uses: ./
       with:
         linter: lint_cmake
+        arguments: '--filter=-linelength'
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
 
@@ -66,10 +74,18 @@ jobs:
       with:
         package-name: ament_copyright ament_lint
         workspace-directory: ament_lint
+    - name: Try a linter with additional arguments
+      uses: ./
+      with:
+        linter: lint_cmake
+        arguments: '--filter=-linelength,+syntax'
+        package-name: ament_cmake_cpplint
+        workspace-directory: ament_lint
     - name: Try a linter with underscores in the name
       uses: ./
       with:
         linter: lint_cmake
+        arguments: '--filter=-linelength'
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
 
