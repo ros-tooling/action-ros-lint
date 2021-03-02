@@ -1056,7 +1056,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -1101,6 +1101,7 @@ function run() {
             const packageNameList = packageName.split(RegExp("\\s"));
             const rosDistribution = core.getInput("distribution");
             const rosWorkspaceDir = core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
+            const additionalArguments = core.getInput("arguments");
             yield exec.exec("rosdep", ["update"]);
             yield exec.exec("sudo", ["apt-get", "update"]);
             yield runAptGetInstall([`ros-${rosDistribution}-ament-${linterToolDashes}`]);
@@ -1113,7 +1114,7 @@ function run() {
             yield exec.exec("bash", [
                 "-c",
                 `source /opt/ros/${rosDistribution}/setup.sh && ` +
-                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p)`
+                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p) --linelength=140 ${additionalArguments}`
             ], options);
         }
         catch (error) {
