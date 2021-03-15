@@ -1114,7 +1114,7 @@ function run() {
             yield exec.exec("bash", [
                 "-c",
                 `source /opt/ros/${rosDistribution}/setup.sh && ` +
-                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p) --linelength=140 ${additionalArguments}`
+                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p) ${additionalArguments}`
             ], options);
         }
         catch (error) {

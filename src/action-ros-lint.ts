@@ -57,7 +57,7 @@ export async function run() {
 				`source /opt/ros/${rosDistribution}/setup.sh && ` +
 					`ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(
 						" "
-					)} -p) --linelength=140 ${additionalArguments}`
+					)} -p) ${additionalArguments}`
 			],
 			options
 		);
