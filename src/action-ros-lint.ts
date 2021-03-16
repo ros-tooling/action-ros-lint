@@ -38,6 +38,12 @@ export async function run() {
 			core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
 		const additionalArguments = core.getInput("arguments");
 
+		const lineLength = core.getInput("lineLength");
+		let lineLengthParam = '';
+		if(lineLength) {
+			lineLengthParam = `--linelength=${lineLength}`;
+		}
+
 		await exec.exec("rosdep", ["update"]);
 
 		await exec.exec("sudo", ["apt-get", "update"]);
@@ -57,7 +63,7 @@ export async function run() {
 				`source /opt/ros/${rosDistribution}/setup.sh && ` +
 					`ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(
 						" "
-					)} -p) --linelength=140 ${additionalArguments}`
+					)} -p) ${lineLengthParam} ${additionalArguments}`
 			],
 			options
 		);

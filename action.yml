@@ -9,6 +9,9 @@ inputs:
     default: 'flake8'
     description: 'ROS 2 Linter'
     required: false
+  lineLength:
+      description: 'Defines the max line length that the linter will use'
+      required: false
   arguments:
     description: 'Additional arguments for linter'
     required: false

@@ -40,6 +40,7 @@ jobs:
       uses: ./
       with:
         linter: lint_cmake
+        lineLength: 140
         arguments: '--filter=-linelength,+syntax'
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
@@ -47,6 +48,7 @@ jobs:
       uses: ./
       with:
         linter: lint_cmake
+        lineLength: 140
         arguments: '--filter=-linelength'
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
@@ -78,6 +80,7 @@ jobs:
       uses: ./
       with:
         linter: lint_cmake
+        lineLength: 140
         arguments: '--filter=-linelength,+syntax'
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint
@@ -85,6 +88,7 @@ jobs:
       uses: ./
       with:
         linter: lint_cmake
+        lineLength: 140
         arguments: '--filter=-linelength'
         package-name: ament_cmake_cpplint
         workspace-directory: ament_lint

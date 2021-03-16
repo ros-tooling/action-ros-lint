@@ -1102,6 +1102,11 @@ function run() {
             const rosDistribution = core.getInput("distribution");
             const rosWorkspaceDir = core.getInput("workspace-directory") || process.env.GITHUB_WORKSPACE;
             const additionalArguments = core.getInput("arguments");
+            const lineLength = core.getInput("lineLength");
+            let lineLengthParam = '';
+            if (lineLength) {
+                lineLengthParam = `--linelength=${lineLength}`;
+            }
             yield exec.exec("rosdep", ["update"]);
             yield exec.exec("sudo", ["apt-get", "update"]);
             yield runAptGetInstall([`ros-${rosDistribution}-ament-${linterToolDashes}`]);
@@ -1114,7 +1119,7 @@ function run() {
             yield exec.exec("bash", [
                 "-c",
                 `source /opt/ros/${rosDistribution}/setup.sh && ` +
-                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p) --linelength=140 ${additionalArguments}`
+                    `ament_${linterTool} $(colcon list --packages-select ${packageNameList.join(" ")} -p) ${lineLengthParam} ${additionalArguments}`
             ], options);
         }
         catch (error) {
