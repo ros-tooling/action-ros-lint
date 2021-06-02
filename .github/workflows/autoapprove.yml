@@ -1,3 +1,4 @@
+# NOTE: this file is managed by ros-tooling/repo-configs, don't edit it manually
 name: Auto approve
 
 on:
@@ -11,6 +12,13 @@ jobs:
   auto-approve-dependabot:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
+    steps:
+      - uses: hmarr/auto-approve-action@v2.1.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+  auto-approve-file-sync:
+    runs-on: ubuntu-latest
+    if: github.actor == 'ros-tooling-bot' && contains(github.event.pull_request.labels.*.name, 'file-sync')
     steps:
       - uses: hmarr/auto-approve-action@v2.1.0
         with:
