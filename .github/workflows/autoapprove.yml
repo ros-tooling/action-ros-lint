@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
-      - uses: hmarr/auto-approve-action@v2.1.0
+      - uses: hmarr/auto-approve-action@v3.1.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
   auto-approve-file-sync:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'ros-tooling-bot' && contains(github.event.pull_request.labels.*.name, 'file-sync')
     steps:
-      - uses: hmarr/auto-approve-action@v2.1.0
+      - uses: hmarr/auto-approve-action@v3.1.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
