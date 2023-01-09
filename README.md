@@ -10,8 +10,6 @@ It may also be used to avoid wasting CI resources (no need to compile, and run t
 
 For linting requiring to compile code, or to compile and run tests, [ros-tooling/action-ros-ci] can be used instead.
 
-:warning: This action runs the linters available in the latest ROS 2 release (Eloquent). This action output may not match other ROS 2 releases, or ROS 2 development branches.
-
 ## Developing
 
 For development and release workflows, see [DEVELOPING.md](DEVELOPING.md)
