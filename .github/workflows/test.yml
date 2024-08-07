@@ -16,17 +16,17 @@ jobs:
   test_setup_ros:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:focal
+      image: ubuntu:jammy
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         path: '.'
-    - uses: actions/setup-node@v3.5.1
+    - uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '20.x'
     - run: .github/workflows/build-and-test.sh
-    - uses: ros-tooling/setup-ros@v0.6
-    - uses: actions/checkout@v3
+    - uses: ros-tooling/setup-ros@v0.7
+    - uses: actions/checkout@v4
       with:
         repository: ament/ament_lint
         ref: humble
@@ -54,17 +54,16 @@ jobs:
   test_setup_ros_docker:
     runs-on: ubuntu-latest
     container:
-      image: rostooling/setup-ros-docker:ubuntu-focal-latest
-      options: -u root  # setup-node requires root access
+      image: rostooling/setup-ros-docker:ubuntu-jammy-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         path: '.'
-    - uses: actions/setup-node@v3.5.1
+    - uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '20.x'
     - run: .github/workflows/build-and-test.sh
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         repository: ament/ament_lint
         ref: humble
