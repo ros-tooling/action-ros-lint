@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-mkdir ~/.npm-global
-NPM_CONFIG_PREFIX=~/.npm-global
+mkdir dist
+NPM_CONFIG_PREFIX=dist
 
 npm install -g codecov
 
