@@ -22,9 +22,9 @@ See [action.yml](action.yml)
 
 ```yaml
 container:
-  image: ubuntu:bionic
+  image: ubuntu:noble
 steps:
-- uses: actions/checkout@v2
+- uses: actions/checkout@v4
 - uses: ros-tooling/setup-ros@master
 - uses: ros-tooling/action-ros-lint@master
   with:
@@ -39,13 +39,13 @@ jobs:
   ament_lint:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:bionic
+      image: ubuntu:noble
     strategy:
       fail-fast: false
       matrix:
           linter: [copyright, flake8, mypy, pep257, pep8, xmllint]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - uses: ros-tooling/setup-ros@master
     - uses: ros-tooling/action-ros-lint@master
       with:
@@ -65,14 +65,13 @@ jobs:
   ament_lint:
     runs-on: ubuntu-latest
     container:
-      image: rostooling/setup-ros-docker:ubuntu-bionic-ros-eloquent-ros-base-latest
-      options: -u root  # setup-node requires root access
+      image: ghcr.io/ros-tooling/setup-ros-docker/setup-ros-docker-ubuntu-noble-ros-jazzy-ros-base
     strategy:
       fail-fast: false
       matrix:
           linter: [copyright, flake8, mypy, pep257, pep8, xmllint]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - uses: ros-tooling/action-ros-lint@master
       with:
         linter: ${{ matrix.linter }}
