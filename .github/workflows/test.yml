@@ -18,15 +18,15 @@ jobs:
     container:
       image: ubuntu:focal
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3.6.0
       with:
         path: '.'
-    - uses: actions/setup-node@v4.0.3
+    - uses: actions/setup-node@v3.6.0
       with:
         node-version: '16.x'
     - run: .github/workflows/build-and-test.sh
-    - uses: ros-tooling/setup-ros@v0.7
-    - uses: actions/checkout@v4
+    - uses: ros-tooling/setup-ros@v0.7.4
+    - uses: actions/checkout@v3.6.0
       with:
         repository: ament/ament_lint
         ref: 0.12.11
@@ -57,14 +57,14 @@ jobs:
       image: rostooling/setup-ros-docker:ubuntu-focal-latest
       options: -u root  # setup-node requires root access
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3.6.0
       with:
         path: '.'
-    - uses: actions/setup-node@v4.0.3
+    - uses: actions/setup-node@v3.6.0
       with:
         node-version: '16.x'
     - run: .github/workflows/build-and-test.sh
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3.6.0
       with:
         repository: ament/ament_lint
         ref: 0.12.11
