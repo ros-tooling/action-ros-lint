@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-npm install -g codecov --unsafe-perm=true --allow-root
+mkdir ~/.npm-global
+NPM_CONFIG_PREFIX=~/.npm-global
+
+npm install -g codecov
 
 npm ci
 npm run build
