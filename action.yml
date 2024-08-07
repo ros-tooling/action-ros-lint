@@ -26,5 +26,5 @@ inputs:
     description: Linters will look for packages in this colcon workspace
     required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
