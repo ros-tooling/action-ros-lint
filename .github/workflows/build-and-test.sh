@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-npm install -g codecov
-
 # When running inside a Docker container, by default, we're root and all files belond to root.
 # However, calling the npm scripts (build, etc.) with 'npm run ...' runs the commands as user
 # ID=1001, which means we can't open or write to any files. Therefore, if we're in Docker, chown
@@ -18,8 +16,3 @@ fi
 npm ci
 npm run build
 npm test
-
-# Upload code coverage result to Codecov
-codecov -f ./coverage/coverage-final.json \
-    --disable=detect --commit="${GITHUB_SHA}" \
-    --branch="${GITHUB_REF#refs/heads/}"
